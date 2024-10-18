@@ -1,0 +1,33 @@
+/* Header.css */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px;
+    background-color: #232f3e;
+    color: white;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin: auto;
+  }
+  
+  input {
+    padding: 5px;
+    border-radius: 4px;
+    border: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+  }
+  
+  nav li {
+    cursor: pointer;
+  }
+  
