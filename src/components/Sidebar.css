@@ -1,37 +1,36 @@
  /* src/components/Sidebar.css */
+ul{
+  list-style: none;
+  padding: 0;
+}
 
-.sidebar {
-    padding: 10px;
-  }
+ .sidebar{
+  padding: 10px;
+ }
 
-  .category-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.top-menu{
+  font-weight: 600;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+.category-name {
+  padding-left: 15px;
+  padding-bottom: 5px;
+}
+
+.section-name {
+  padding-left: 25px;
+  padding-bottom: 5px;
+}
+
+.product-type-name {
+  padding-left: 35px;
+  padding-bottom: 5px;
+}
+
+
   
-  
-  .category-name, .section-name {
-    font-weight: bold;
-    cursor: pointer;
-    padding: 5px 0;
-  }
-  
-  .category-list, .section-list, .product-type-list {
-    padding-left: 0; 
-  }
-  
-  .section-list {
-    padding-left: 20px; /* Indent for subsections */
-  }
-  
-  .product-type-list {
-    padding-left: 20px; /* Indent for product types */
-  }
-  
-  .product-type-name {
-    margin: 3px 0; /* Space between product types */
-  }
   
   
   
