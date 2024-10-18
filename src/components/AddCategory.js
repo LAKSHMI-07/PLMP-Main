@@ -1,3 +1,5 @@
+// src\components\AddCategory.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -8,7 +10,11 @@ const AddCategory = ({ refreshCategories }) => {
     e.preventDefault();
 
     try {
-      await axios.post('http://192.168.1.5:8000/api/createCategory/', {
+      // await axios.post('http://192.168.162.82:8000/api/createCategory/', {
+      //   name: categoryName,
+      // });
+
+      await axios.post(`${process.env.REACT_APP_IP}/createCategory/`, {
         name: categoryName,
       });
 
@@ -21,7 +27,8 @@ const AddCategory = ({ refreshCategories }) => {
 
       // Log the updated categories to verify the addition
       console.log('Updated Categories after addition:');
-      const updatedCategories = await axios.get('http://192.168.1.5:8000/api/obtainCategoryAndSections/');
+      // const updatedCategories = await axios.get('http://192.168.162.82:8000/api/obtainCategoryAndSections/');
+      const updatedCategories = await axios.get(`${process.env.REACT_APP_API_URL}/obtainCategoryAndSections/`);
       console.log(updatedCategories.data.data);
     } catch (error) {
       console.error('Error adding category:', error);
@@ -31,7 +38,6 @@ const AddCategory = ({ refreshCategories }) => {
 
   return (
     <div className="add-category">
-      <h2>Add New Category</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -40,7 +46,7 @@ const AddCategory = ({ refreshCategories }) => {
           placeholder="Enter category name"
           required
         />
-        <button type="submit">Add Category</button>
+        <button type="submit">Add New Category</button>
       </form>
     </div>
   );

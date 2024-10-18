@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+// src/App.js
+import { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import Sidebar from './components/Sidebar';
 import ProductListing from './components/ProductList';
@@ -7,24 +9,25 @@ import AddCategory from './components/AddCategory';
 import axios from 'axios';
 
 function App() {
-  const [data, setData] = useState([]);
-  const [selectedProductType, setSelectedProductType] = useState('');
+  const [categoriesData, setCategoriesData] = useState([]);
+  const [selectedProductTypeId, setSelectedProductTypeId] = useState(null); // Store selected product type ID
 
-  // Fetch categories from the API
+  console.log('API URL:', process.env.REACT_APP_IP);
+
+
+  // Fetch categories and sections from API
   const fetchCategories = async () => {
     try {
-      const res = await axios.get('http://192.168.1.5:8000/api/obtainCategoryAndSections/');
-      setData(res.data.data);
-
-      // Log the fetched categories to the console
-      console.log('Fetched Categories:', res.data.data);
+      // const res = await axios.get('http://192.168.162.82:8000/api/obtainCategoryAndSections/');
+      const res = await axios.get(`${process.env.REACT_APP_IP}/obtainCategoryAndSections/`,);
+      setCategoriesData(res.data.data);
     } catch (err) {
       console.log('ERROR', err);
     }
   };
 
   useEffect(() => {
-    fetchCategories(); // Fetch categories on mount
+    fetchCategories(); // Fetch categories on component mount
   }, []);
 
   return (
@@ -33,10 +36,10 @@ function App() {
       <div className="main-container">
         <div className="sidebar-container">
           <AddCategory refreshCategories={fetchCategories} />
-          <Sidebar data={data} setSelectedProductType={setSelectedProductType} />
+          <Sidebar data={categoriesData} setSelectedProductTypeId={setSelectedProductTypeId} />
         </div>
         <div className="right-content">
-          <ProductListing data={selectedProductType} />
+          <ProductListing productTypeId={selectedProductTypeId} />
         </div>
       </div>
     </>
